@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View, Button } from "react-native";
 
@@ -18,8 +10,21 @@ import {
 class DetailsScreen extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Details!</Text>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#88b9ac"
+        }}
+      >
+        <View style={{ flex: 1, margin: 10 }}>
+          <Text>Details</Text>
+          <Button
+            title="Push Home From Details"
+            onPress={() => this.props.navigation.push("Home")}
+          />
+        </View>
       </View>
     );
   }
@@ -28,26 +33,30 @@ class DetailsScreen extends React.Component {
 class HomeScreen extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#88b9ac"
+        }}
+      >
         {/* other code from before here */}
-        <Button
-          title="Go to Details"
-          onPress={() => this.props.navigation.navigate("Details")}
-        />
-      </View>
-    );
-  }
-}
 
-class SettingsScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        {/* other code from before here */}
-        <Button
-          title="Go to Details"
-          onPress={() => this.props.navigation.navigate("Details")}
-        />
+        <View style={{ flex: 1, margin: 10 }}>
+          <Text>Home</Text>
+          <Button
+            title="Push Details From Home"
+            onPress={() => this.props.navigation.push("Details")}
+          />
+        </View>
+
+        <View style={{ flex: 1, margin: 10 }}>
+          <Button
+            title="PopToTop"
+            onPress={() => this.props.navigation.popToTop()}
+          />
+        </View>
       </View>
     );
   }
@@ -58,19 +67,4 @@ const HomeStack = createStackNavigator({
   Details: DetailsScreen
 });
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
-  Details: DetailsScreen
-});
-
-export default createAppContainer(
-  createBottomTabNavigator(
-    {
-      Home: HomeStack,
-      Settings: SettingsStack
-    },
-    {
-      /* Other configuration remains unchanged */
-    }
-  )
-);
+export default createAppContainer(HomeStack);
